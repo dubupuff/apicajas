@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUBUPUFF PORTAL</title>
-    <!-- Fuente Montserrat de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos Globales */
@@ -86,7 +85,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 229, 223, 0.8);
+            background-color: rgba(255, 229, 223, 0.85);
             backdrop-filter: blur(4px);
             display: flex;
             justify-content: center;
@@ -107,7 +106,7 @@
             background-color: #ffffff;
             width: 100%;
             max-width: 450px;
-            padding: 35px 30px;
+            padding: 40px 30px;
             border-radius: 24px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -125,7 +124,7 @@
             position: absolute;
             top: 15px;
             right: 20px;
-            font-size: 22px;
+            font-size: 24px;
             background: none;
             border: none;
             color: #9ca3af;
@@ -146,196 +145,9 @@
 
         label {
             display: block;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             color: #ff8fa3;
             text-transform: uppercase;
             margin-bottom: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 14px 16px;
-            font-size: 18px;
-            border: 2px solid #ffe4e1;
-            border-radius: 12px;
-            outline: none;
-            color: #333333;
-            background-color: #fffafb;
-            text-align: center;
-        }
-
-        input[type="number"]:focus {
-            border-color: #ffb6c1;
-            box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.3);
-            background-color: #ffffff;
-        }
-
-        .total-box {
-            font-size: 32px;
-            font-weight: 700;
-            color: #ff758f;
-            margin: 15px 0;
-            min-height: 40px;
-        }
-
-        /* Botón Copiar */
-        .btn-copiar {
-            background-color: #ff8fa3;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: background 0.2s;
-        }
-        .btn-copiar:hover {
-            background-color: #ff758f;
-        }
-
-        .mensaje-final {
-            font-size: 13px;
-            color: #555555;
-            font-weight: 500;
-            line-height: 1.5;
-            border-top: 1px dashed #ffe4e1;
-            padding-top: 20px;
-        }
-
-        /* Estilo de los textos informativos en los popups */
-        .info-texto {
-            font-size: 14px;
-            color: #4b5563;
-            line-height: 1.6;
-            text-align: left;
-            margin-top: 15px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- PORTAL PRINCIPAL (HOME) -->
-    <div class="portal-container">
-        <h1>DUBUPUFF PORTAL</h1>
-        <div class="subtitulo">¡Bienvenida! Elegí una opción de acá abajo 💕</div>
-
-        <div class="menu-grid">
-            <button class="btn-menu" onclick="abrirModal('modal-poca')">🌸 Cotizador Pocamarket</button>
-            <button class="btn-menu" onclick="abrirModal('modal-buyee')">🛍️ Cotizador Buyee</button>
-            <button class="btn-menu" onclick="abrirModal('modal-ayuda')">📌 ¿Cómo comprar?</button>
-            <button class="btn-menu" onclick="abrirModal('modal-terminos')">💬 Términos y Condiciones</button>
-        </div>
-    </div>
-
-    <!-- POPUP 1: COTIZADOR POCAMARKET -->
-    <div class="modal-overlay" id="modal-poca">
-        <div class="modal-content">
-            <button class="btn-cerrar" onclick="cerrarModal('modal-poca')">&times;</button>
-            <h1>COTIZADOR POCAMARKET</h1>
-            <div class="subtitulo">pocamarket dubupuff - dólar 1500</div>
-
-            <div class="input-group">
-                <label>ingresar el monto con punto. ejemplo: 2.50</label>
-                <input type="number" id="input-poca" placeholder="0.00" min="0" step="any">
-            </div>
-            <div class="total-box" id="res-poca">$0,00 ARS</div>
-            <button class="btn-copiar" onclick="copiarTexto('res-poca')">📋 Copiar Resultado</button>
-            <div class="mensaje-final">una vez cotizado, mandame por dm el link de poca así compro &lt;3</div>
-        </div>
-    </div>
-
-    <!-- POPUP 2: COTIZADOR BUYEE -->
-    <div class="modal-overlay" id="modal-buyee">
-        <div class="modal-content">
-            <button class="btn-cerrar" onclick="cerrarModal('modal-buyee')">&times;</button>
-            <h1>COTIZADOR BUYEE</h1>
-            <div class="subtitulo">dólar 1550 + 2.20 usd fee</div>
-
-            <div class="input-group">
-                <label>ingresar el monto con punto. ejemplo: 2.50</label>
-                <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
-            </div>
-            <div class="total-box" id="res-buyee">$0,00 ARS</div>
-            <button class="btn-copiar" onclick="copiarTexto('res-buyee')">📋 Copiar Resultado</button>
-            <div class="mensaje-final">una vez cotizado, mandame por dm el link así compro &lt;3</div>
-        </div>
-    </div>
-
-    <!-- POPUP 3: CÓMO COMPRAR -->
-    <div class="modal-overlay" id="modal-ayuda">
-        <div class="modal-content">
-            <button class="btn-cerrar" onclick="cerrarModal('modal-ayuda')">&times;</button>
-            <h1>¿Cómo comprar?</h1>
-            <div class="subtitulo">Guía rápida paso a paso</div>
-            <div class="info-texto">
-                1. Buscá el producto que te interese en la plataforma correspondiente.<br><br>
-                2. Copiá el precio en dólares e ingresalo en nuestros cotizadores para saber el valor final en pesos argentinos.<br><br>
-                3. Una vez que tengas el monto, pasame el link directo por mensaje directo (DM).<br><br>
-                4. Te paso los datos de transferencia y coordinamos la compra de inmediato.
-            </div>
-        </div>
-    </div>
-
-    <!-- POPUP 4: TÉRMINOS Y CONDICIONES -->
-    <div class="modal-overlay" id="modal-terminos">
-        <div class="modal-content">
-            <button class="btn-cerrar" onclick="cerrarModal('modal-terminos')">&times;</button>
-            <h1>Términos y Condiciones</h1>
-            <div class="subtitulo">Información importante antes de encargar</div>
-            <div class="info-texto">
-                • Los precios de los cotizadores se basan en un tipo de cambio fijo que puede actualizarse según las variaciones del mercado.<br><br>
-                • Una vez realizada la transferencia, no se aceptan cancelaciones debido a que la compra se procesa de forma instantánea.<br><br>
-                • Los tiempos de envío e internacional dependen pura y exclusivamente de las plataformas de origen.
-            </div>
-        </div>
-    </div>
-
-    <!-- LÓGICA JAVASCRIPT -->
-    <script>
-        // Funciones para abrir y cerrar Popups
-        function abrirModal(id) {
-            document.getElementById(id).classList.add('active');
-        }
-        function cerrarModal(id) {
-            document.getElementById(id).classList.remove('active');
-            // Limpia los inputs al cerrar para que vuelvan a cero
-            if(id === 'modal-poca') { document.getElementById('input-poca').value = ''; document.getElementById('res-poca').textContent = '$0,00 ARS'; }
-            if(id === 'modal-buyee') { document.getElementById('input-buyee').value = ''; document.getElementById('res-buyee').textContent = '$0,00 ARS'; }
-        }
-
-        // Cálculos de los cotizadores
-        const inputPoca = document.getElementById('input-poca');
-        const resPoca = document.getElementById('res-poca');
-        inputPoca.addEventListener('input', () => {
-            const v = parseFloat(inputPoca.value);
-            if (!isNaN(v) && v >= 0) {
-                resPoca.textContent = '$' + (v * 1500).toLocaleString('es-AR', { minimumFractionDigits: 2 }) + ' ARS';
-            } else { resPoca.textContent = '$0,00 ARS'; }
-        });
-
-        const inputBuyee = document.getElementById('input-buyee');
-        const resBuyee = document.getElementById('res-buyee');
-        inputBuyee.addEventListener('input', () => {
-            const v = parseFloat(inputBuyee.value);
-            if (!isNaN(v) && v >= 0) {
-                resBuyee.textContent = '$' + ((v + 2.20) * 1550).toLocaleString('es-AR', { minimumFractionDigits: 2 }) + ' ARS';
-            } else { resBuyee.textContent = '$0,00 ARS'; }
-        });
-
-        // Función para copiar el resultado al portapapeles
-        function copiarTexto(idElemento) {
-            const texto = document.getElementById(idElemento).textContent;
-            // Quitamos el signo $ y las letras ARS si solo quieres el número, o copiamos todo:
-            navigator.clipboard.writeText(texto).then(() => {
-                alert('¡Resultado copiado con éxito! 💕: ' + texto);
-            }).catch(err => {
-                console.error('Error al copiar: ', err);
-            });
-        }
-    </style>
-</body>
-</html>
+            letter
