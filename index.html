@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #FFE5DF; /* Color de fondo solicitado */
+            background-color: #FFE5DF; /* Color de fondo rosa */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M15 5l1.2 2.5 2.8.4-2 2 1.3 2.6-2.3-1.5-2.3 1.5 1.3-2.6-2-2 2.8-.4L15 5zm30 30l.8 1.7 1.9.3-1.4 1.3.9 1.8-1.6-1-1.6 1 .9-1.8-1.4-1.3 1.9-.3.8-1.7zm5-20l.5 1 .9.2-.7.7.4 1-.8-.5-.8.5.4-1-.7-.7.9-.2.5-1z" fill="%23FFFFFF" fill-opacity="0.6"/></svg>');
             display: flex;
             justify-content: center;
@@ -27,4 +27,52 @@
         /* Contenedor Principal (Estilo Carrd) */
         .portal-container {
             background-color: #ffffff;
-            max-width:
+            max-width: 550px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 32px;
+            box-shadow: 0 12px 35px rgba(255, 117, 143, 0.2);
+            border: 4px dashed #FFB6C1; /* Borde punteado rosa */
+            text-align: center;
+            position: relative;
+        }
+
+        /* Título Principal con estrellitas */
+        h1.main-title {
+            font-size: 32px;
+            color: #FF5C8A; /* Rosa fucsia suave */
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+        h1.main-title::before { content: "✨ "; }
+        h1.main-title::after { content: " ✨"; }
+
+        /* Barra de Navegación Superior */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 2px solid #FFE4E1;
+            background-color: #FFF5F6;
+            color: #FF758F;
+            flex: 1;
+            max-width: 145px;
+            white-space: nowrap;
+        }
+
+        /* Pestaña activa en tonos rosa de contraste */
+        .tab-button.active {
+            background-color: #FFB6C1;
+            color: #FFFFFF;
+            border-color: #FFA4B2
