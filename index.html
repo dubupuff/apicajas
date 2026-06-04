@@ -96,9 +96,9 @@
             flex-wrap: wrap; /* Soporte para celulares */
         }
 
-        .tab-button {
-            padding: 12px 14px;
-            font-size: 13px;
+       .tab-button {
+            padding: 12px 8px; /* Reducimos el espacio interno lateral para ganar lugar */
+            font-size: 12px;   /* Letra un cachito más chica para que entre "cotizador" */
             font-weight: 700;
             border-radius: 16px;
             cursor: pointer;
@@ -107,8 +107,9 @@
             background-color: #FFF5F6;
             color: #FF758F;
             flex: 1;
-            min-width: 105px;
-            white-space: nowrap;
+            min-width: 90px;   /* Reducido para que entren mejor los 4 botones en línea */
+            white-space: normal; /* Permite que si no entra, el texto baje en dos renglones de forma prolija */
+            word-wrap: break-word;
         }
 
         /* Pestaña activa en tonos rosa de contraste */
