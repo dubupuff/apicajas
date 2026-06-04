@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUBUPUFF PORTAL</title>
+    <!-- Fuente Montserrat de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos Globales */
@@ -24,16 +25,19 @@
             padding: 20px;
         }
 
-        /* Contenedor Principal (Home) */
+        /* Contenedor Principal Visible (Home) */
         .portal-container {
-            background-color: #ffffff;
+            background-color: #ffffff !important; /* Forzamos blanco puro */
             max-width: 450px;
             width: 100%;
             padding: 40px 30px;
             border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(255, 182, 193, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 12px 30px rgba(255, 182, 193, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.9);
             text-align: center;
+            position: relative; /* Asegura que se renderice sobre el fondo */
+            z-index: 10; /* Se posiciona por delante */
+            display: block !important; /* Evita que cualquier bug lo oculte */
         }
 
         h1 {
@@ -42,6 +46,7 @@
             font-weight: 700;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
+            text-align: center;
         }
 
         .subtitulo {
@@ -49,6 +54,7 @@
             color: #555555;
             font-weight: 500;
             margin-bottom: 30px;
+            text-align: center;
         }
 
         /* Menú de Botones Principales */
@@ -68,6 +74,7 @@
             border-radius: 16px;
             cursor: pointer;
             transition: all 0.25s ease;
+            width: 100%;
         }
 
         .btn-menu:hover {
@@ -78,14 +85,14 @@
             box-shadow: 0 6px 15px rgba(255, 117, 143, 0.3);
         }
 
-        /* Estilos de los Pop-ups (Modals) */
+        /* Ventanas Flotantes Pop-ups (Modals) */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 229, 223, 0.85);
+            background-color: rgba(255, 229, 223, 0.9);
             backdrop-filter: blur(4px);
             display: flex;
             justify-content: center;
@@ -130,14 +137,13 @@
             color: #9ca3af;
             cursor: pointer;
             font-weight: 700;
-            transition: color 0.2s;
         }
 
         .btn-cerrar:hover {
             color: #ff758f;
         }
 
-        /* Estilos internos de los Cotizadores */
+        /* Estilos de los inputs internos */
         .input-group {
             margin-bottom: 20px;
             text-align: center;
@@ -150,4 +156,206 @@
             color: #ff8fa3;
             text-transform: uppercase;
             margin-bottom: 12px;
-            letter
+            letter-spacing: 0.5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 18px;
+            border: 2px solid #ffe4e1;
+            border-radius: 12px;
+            outline: none;
+            color: #333333;
+            background-color: #fffafb;
+            text-align: center;
+        }
+
+        input[type="number"]:focus {
+            border-color: #ffb6c1;
+            box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.3);
+            background-color: #ffffff;
+        }
+
+        .total-box {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff758f;
+            margin: 15px 0;
+            min-height: 40px;
+            text-align: center;
+        }
+
+        .btn-copiar {
+            background-color: #ff8fa3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+        .btn-copiar:hover {
+            background-color: #ff758f;
+        }
+
+        .mensaje-final {
+            font-size: 13px;
+            color: #555555;
+            font-weight: 500;
+            line-height: 1.5;
+            border-top: 1px dashed #ffe4e1;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .info-texto {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PORTAL PRINCIPAL (HOME) - Forzado para que no desaparezca -->
+    <div class="portal-container">
+        <h1>DUBUPUFF PORTAL</h1>
+        <div class="subtitulo">¡Bienvenida! Elegí una opción de acá abajo 💕</div>
+
+        <div class="menu-grid">
+            <button class="btn-menu" onclick="abrirModal('modal-poca')">🌸 Cotizador Pocamarket</button>
+            <button class="btn-menu" onclick="abrirModal('modal-buyee')">🛍️ Cotizador Buyee</button>
+            <button class="btn-menu" onclick="abrirModal('modal-ayuda')">📌 ¿Cómo comprar?</button>
+            <button class="btn-menu" onclick="abrirModal('modal-terminos')">💬 Términos y Condiciones</button>
+        </div>
+    </div>
+
+    <!-- POPUP 1: COTIZADOR POCAMARKET -->
+    <div class="modal-overlay" id="modal-poca">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-poca')">&times;</button>
+            <h1>COTIZADOR POCAMARKET</h1>
+            <div class="subtitulo">pocamarket dubupuff - dólar 1500</div>
+
+            <div class="input-group">
+                <label>ingresar el monto con punto. ejemplo: 2.50</label>
+                <input type="number" id="input-poca" placeholder="0.00" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-poca">$0,00 ARS</div>
+            <button class="btn-copiar" id="btn-copiar-poca" onclick="copiarTexto('res-poca', 'btn-copiar-poca')">📋 Copiar Resultado</button>
+            <div class="mensaje-final">una vez cotizado, mandame por dm el link de poca así compro &lt;3</div>
+        </div>
+    </div>
+
+    <!-- POPUP 2: COTIZADOR BUYEE -->
+    <div class="modal-overlay" id="modal-buyee">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-buyee')">&times;</button>
+            <h1>COTIZADOR BUYEE</h1>
+            <div class="subtitulo">dólar 1550 + 2.20 usd fee</div>
+
+            <div class="input-group">
+                <label>ingresar el monto con punto. ejemplo: 2.50</label>
+                <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-buyee">$0,00 ARS</div>
+            <button class="btn-copiar" id="btn-copiar-buyee" onclick="copiarTexto('res-buyee', 'btn-copiar-buyee')">📋 Copiar Resultado</button>
+            <div class="mensaje-final">una vez cotizado, mandame por dm el link así compro &lt;3</div>
+        </div>
+    </div>
+
+    <!-- POPUP 3: CÓMO COMPRAR -->
+    <div class="modal-overlay" id="modal-ayuda">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-ayuda')">&times;</button>
+            <h1>¿Cómo comprar?</h1>
+            <div class="subtitulo">Guía rápida paso a paso</div>
+            <div class="info-texto">
+                1. Buscá el producto que te interese en la plataforma correspondiente.<br><br>
+                2. Copiá el precio en dólares e ingresalo en nuestros cotizadores para saber el valor final en pesos argentinos.<br><br>
+                3. Una vez que tengas el monto, pasame el link directo por mensaje directo (DM).<br><br>
+                4. Te paso los datos de transferencia y coordinamos la compra de inmediato.
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP 4: TÉRMINOS Y CONDICIONES -->
+    <div class="modal-overlay" id="modal-terminos">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-terminos')">&times;</button>
+            <h1>Términos y Condiciones</h1>
+            <div class="subtitulo">Información importante antes de encargar</div>
+            <div class="info-texto">
+                • Los precios de los cotizadores se basan en un tipo de cambio fijo que puede actualizarse según las variaciones del mercado.<br><br>
+                • Una vez realizada la transferencia, no se aceptan cancelaciones debido a que la compra se procesa de forma instantánea.<br><br>
+                • Los tiempos de envío e internacional dependen pura y exclusivamente de las plataformas de origen.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('active');
+            if(id === 'modal-poca') setTimeout(() => document.getElementById('input-poca').focus(), 100);
+            if(id === 'modal-buyee') setTimeout(() => document.getElementById('input-buyee').focus(), 100);
+        }
+
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('active');
+            if(id === 'modal-poca') {
+                document.getElementById('input-poca').value = '';
+                document.getElementById('res-poca').textContent = '$0,00 ARS';
+            }
+            if(id === 'modal-buyee') {
+                document.getElementById('input-buyee').value = '';
+                document.getElementById('res-buyee').textContent = '$0,00 ARS';
+            }
+        }
+
+        const inputPoca = document.getElementById('input-poca');
+        const resPoca = document.getElementById('res-poca');
+        inputPoca.addEventListener('input', function() {
+            const v = parseFloat(this.value);
+            if (!isNaN(v) && v >= 0) {
+                const total = v * 1500;
+                resPoca.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
+            } else { resPoca.textContent = '$0,00 ARS'; }
+        });
+
+        const inputBuyee = document.getElementById('input-buyee');
+        const resBuyee = document.getElementById('res-buyee');
+        inputBuyee.addEventListener('input', function() {
+            const v = parseFloat(this.value);
+            if (!isNaN(v) && v >= 0) {
+                const total = (v + 2.20) * 1550;
+                resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
+            } else { resBuyee.textContent = '$0,00 ARS'; }
+        });
+
+        function copiarTexto(idElemento, idBoton) {
+            const texto = document.getElementById(idElemento).textContent;
+            const boton = document.getElementById(idBoton);
+            navigator.clipboard.writeText(texto).then(() => {
+                const textoOriginal = boton.textContent;
+                boton.textContent = '✨ ¡Copiado! ✨';
+                setTimeout(() => { boton.textContent = textoOriginal; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
