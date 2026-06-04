@@ -37,12 +37,11 @@
             position: relative;
         }
 
-        /* Imagen de Jigglypuff Pixel Art con animación de flotación */
+        /* Imagen de Jigglypuff apuntando a tu propio archivo de GitHub */
         .jiggly-avatar {
             width: 75px;
             height: auto;
             margin-bottom: 12px;
-            image-rendering: pixelated; /* Mantiene los píxeles nítidos */
             display: inline-block;
             animation: floatEffect 3s ease-in-out infinite;
         }
@@ -257,7 +256,7 @@
 <body>
 
     <div class="portal-container">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/anim/normal/jigglypuff.gif" alt="Jigglypuff Pixel Art" class="jiggly-avatar">
+        <img src="jigglypuff.gif" alt="Jigglypuff Pixel Art" class="jiggly-avatar">
 
         <h1 class="main-title">GO'S DUBUPUFF</h1>
 
@@ -288,4 +287,114 @@
         </div>
 
         <div class="page-content" id="page-poca">
-            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">COTIZADOR POCAMARKET</h2>
+            <div class="subtitulo">pocamarket - dólar 1500</div>
+
+            <div class="input-group">
+                <label>ingresar el monto con punto. ejemplo: 2.50</label>
+                <input type="number" id="input-poca" placeholder="0.00" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-poca">$0,00 ARS</div>
+            <div class="mensaje-final">una vez cotizado, mandame por dm el link de poca así compro &lt;3</div>
+        </div>
+
+        <div class="page-content" id="page-links">
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">Links Externos</h2>
+            <div class="subtitulo">Acceso directo a las plataformas oficiales</div>
+            
+            <div class="external-links-container">
+                <a href="#" target="_blank" class="btn-external">🌐 Sitio Oficial Buyee</a>
+                <a href="#" target="_blank" class="btn-external">🃏 Sitio Oficial Pocamarket</a>
+                <a href="#" target="_blank" class="btn-external">💖 Formulario de Pedidos</a>
+            </div>
+        </div>
+
+        <div class="page-content" id="page-info-imp">
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">Información Importante</h2>
+            <div class="info-texto">
+                1. Buscá el producto que te interese en la plataforma correspondiente.<br><br>
+                2. Copiá el precio en dólares e ingresalo en nuestros cotizadores para saber el valor final en pesos argentinos.<br><br>
+                3. Una vez que tengas el monto, pasame el link directo por mensaje directo (DM).<br><br>
+                4. Te paso los datos de transferencia y coordinamos la compra de inmediato.
+            </div>
+            <button class="tab-button" style="margin-top: 25px; max-width: 100%;" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Volver al Inicio</button>
+        </div>
+
+        <div class="page-content" id="page-reglas">
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">Reglas del Servicio</h2>
+            <div class="info-texto">
+                • Los precios de los cotizadores se basan en un tipo de cambio fijo que puede actualizarse según las variaciones del mercado.<br><br>
+                • Una vez realizada la transferencia, no se aceptan cancelaciones debido a que la compra se procesa de forma instantánea.<br><br>
+                • Los tiempos de envío e internacional dependen pura y exclusivamente de las plataformas de origen.
+            </div>
+            <button class="tab-button" style="margin-top: 25px; max-width: 100%;" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Volver al Inicio</button>
+        </div>
+
+    </div>
+
+    <script>
+        function cambiarPagina(pageId, tabId) {
+            var paginas = document.querySelectorAll('.page-content');
+            for (var i = 0; i < paginas.length; i++) {
+                paginas[i].classList.remove('active');
+            }
+
+            var pestañas = document.querySelectorAll('.tab-button');
+            for (var j = 0; j < pestañas.length; j++) {
+                pestañas[j].classList.remove('active');
+            }
+
+            var elPage = document.getElementById(pageId);
+            if(elPage) { elPage.classList.add('active'); }
+            
+            var elTab = document.getElementById(tabId);
+            if(elTab) { elTab.classList.add('active'); }
+
+            if(pageId !== 'page-buyee') {
+                var inB = document.getElementById('input-buyee');
+                var resB = document.getElementById('res-buyee');
+                if(inB) inB.value = '';
+                if(resB) resB.textContent = '$0,00 ARS';
+            }
+            if(pageId !== 'page-poca') {
+                var inP = document.getElementById('input-poca');
+                var resP = document.getElementById('res-poca');
+                if(inP) inP.value = '';
+                if(resP) resP.textContent = '$0,00 ARS';
+            }
+        }
+
+        var inputBuyee = document.getElementById('input-buyee');
+        var resBuyee = document.getElementById('res-buyee');
+        if(inputBuyee && resBuyee) {
+            inputBuyee.addEventListener('input', function() {
+                var v = parseFloat(this.value);
+                if (!isNaN(v) && v >= 0) {
+                    var total = (v + 3.50) * 1550;
+                    resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
+                } else { resBuyee.textContent = '$0,00 ARS'; }
+            });
+        }
+
+        var inputPoca = document.getElementById('input-poca');
+        var resPoca = document.getElementById('res-poca');
+        if(inputPoca && resPoca) {
+            inputPoca.addEventListener('input', function() {
+                var v = parseFloat(this.value);
+                if (!isNaN(v) && v >= 0) {
+                    var total = v * 1500;
+                    resPoca.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
+                } else { resPoca.textContent = '$0,00 ARS'; }
+            });
+        }
+
+        // ================= SCRIPT ANTI-INSPECCIÓN SEGURO =================
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') e.preventDefault();
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) e.preventDefault();
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) e.preventDefault();
+        });
+    </script>
+</body>
+</html>
