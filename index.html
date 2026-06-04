@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUBUPUFF PORTAL</title>
+    <!-- Fuente Montserrat de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Globales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #FFE5DF; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M15 5l1.2 2.5 2.8.4-2 2 1.3 2.6-2.3-1.5-2.3 1.5 1.3-2.6-2-2 2.8-.4L15 5zm30 30l.8 1.7 1.9.3-1.4 1.3.9 1.8-1.6-1-1.6 1 .9-1.8-1.4-1.3 1.9-.3.8-1.7zm5-20l.5 1 .9.2-.7.7.4 1-.8-.5-.8.5.4-1-.7-.7.9-.2.5-1z" fill="%23FFFFFF" fill-opacity="0.6"/></svg>');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Contenedor Principal (Home) */
+        .portal-container {
+            background-color: #ffffff;
+            max-width: 450px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(255, 182, 193, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #111827;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitulo {
+            font-size: 14px;
+            color: #555555;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        /* Menú de Botones Principales */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .btn-menu {
+            background-color: #fff5f6;
+            color: #ff758f;
+            border: 2px solid #ffe4e1;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-menu:hover {
+            background-color: #ff758f;
+            color: #ffffff;
+            border-color: #ff758f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 117, 143, 0.3);
+        }
+
+        /* Estilos de los Pop-ups (Modals) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 229, 223, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 35px 30px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        /* Botón Cerrar (X) */
+        .btn-cerrar {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 22px;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .btn-cerrar:hover {
+            color: #ff758f;
+        }
+
+        /* Estilos internos de los Cotizadores */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ff8fa3;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 18px;
+            border: 2px solid #ffe4e1;
+            border-radius: 12px;
+            outline: none;
+            color: #333333;
+            background-color: #fffafb;
+            text-align: center;
+        }
+
+        input[type="number"]:focus {
+            border-color: #ffb6c1;
+            box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.3);
+            background-color: #ffffff;
+        }
+
+        .total-box {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff758f;
+            margin: 15px 0;
+            min-height: 40px;
+        }
+
+        /* Botón Copiar */
+        .btn-copiar {
+            background-color: #ff8fa3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.2s;
+        }
+        .btn-copiar:hover {
+            background-color: #ff758f;
+        }
+
+        .mensaje-final {
+            font-size: 13px;
+            color: #555555;
+            font-weight: 500;
+            line-height: 1.5;
+            border-top: 1px dashed #ffe4e1;
+            padding-top: 20px;
+        }
+
+        /* Estilo de los textos informativos en los popups */
+        .info-texto {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PORTAL PRINCIPAL (HOME) -->
+    <div class="portal-container">
+        <h1>DUBUPUFF PORTAL</h1>
+        <div class="subtitulo">¡Bienvenida! Elegí una opción de acá abajo 💕</div>
+
+        <div class="menu-grid">
+            <button class="btn-menu" onclick="abrirModal('modal-poca')">🌸 Cotizador Pocamarket</button>
+            <button class="btn-menu" onclick="abrirModal('modal-buyee')">🛍️ Cotizador Buyee</button>
+            <button class="btn-menu" onclick="abrirModal('modal-ayuda')">📌 ¿Cómo comprar?</button>
+            <button class="btn-menu" onclick="abrirModal('modal-terminos')">💬 Términos y Condiciones</button>
+        </div>
+    </div>
+
+    <!-- POPUP 1: COTIZADOR POCAMARKET -->
+    <div class="modal-overlay" id="modal-poca">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-poca')">&times;</button>
+            <h1>COTIZADOR POCAMARKET</h1>
+            <div class="subtitulo">pocamarket dubupuff - dólar 1500</div>
+
+            <div class="input-group">
+                <label>ingresar el monto con punto. ejemplo: 2.50</label>
+                <input type="number" id="input-poca" placeholder="0.00" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-poca">$0,00 ARS</div>
+            <button class="btn-copiar" onclick="copiarTexto('res-poca')">📋 Copiar Resultado</button>
+            <div class="mensaje-final">una vez cotizado, mandame por dm el link de poca así compro &lt;3</div>
+        </div>
+    </div>
+
+    <!-- POPUP 2: COTIZADOR BUYEE -->
+    <div class="modal-overlay" id="modal-buyee">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-buyee')">&times;</button>
+            <h1>COTIZADOR BUYEE</h1>
+            <div class="subtitulo">dólar 1550 + 2.20 usd fee</div>
+
+            <div class="input-group">
+                <label>ingresar el monto con punto. ejemplo: 2.50</label>
+                <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-buyee">$0,00 ARS</div>
+            <button class="btn-copiar" onclick="copiarTexto('res-buyee')">📋 Copiar Resultado</button>
+            <div class="mensaje-final">una vez cotizado, mandame por dm el link así compro &lt;3</div>
+        </div>
+    </div>
+
+    <!-- POPUP 3: CÓMO COMPRAR -->
+    <div class="modal-overlay" id="modal-ayuda">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-ayuda')">&times;</button>
+            <h1>¿Cómo comprar?</h1>
+            <div class="subtitulo">Guía rápida paso a paso</div>
+            <div class="info-texto">
+                1. Buscá el producto que te interese en la plataforma correspondiente.<br><br>
+                2. Copiá el precio en dólares e ingresalo en nuestros cotizadores para saber el valor final en pesos argentinos.<br><br>
+                3. Una vez que tengas el monto, pasame el link directo por mensaje directo (DM).<br><br>
+                4. Te paso los datos de transferencia y coordinamos la compra de inmediato.
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP 4: TÉRMINOS Y CONDICIONES -->
+    <div class="modal-overlay" id="modal-terminos">
+        <div class="modal-content">
+            <button class="btn-cerrar" onclick="cerrarModal('modal-terminos')">&times;</button>
+            <h1>Términos y Condiciones</h1>
+            <div class="subtitulo">Información importante antes de encargar</div>
+            <div class="info-texto">
+                • Los precios de los cotizadores se basan en un tipo de cambio fijo que puede actualizarse según las variaciones del mercado.<br><br>
+                • Una vez realizada la transferencia, no se aceptan cancelaciones debido a que la compra se procesa de forma instantánea.<br><br>
+                • Los tiempos de envío e internacional dependen pura y exclusivamente de las plataformas de origen.
+            </div>
+        </div>
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // Funciones para abrir y cerrar Popups
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('active');
+            // Limpia los inputs al cerrar para que vuelvan a cero
+            if(id === 'modal-poca') { document.getElementById('input-poca').value = ''; document.getElementById('res-poca').textContent = '$0,00 ARS'; }
+            if(id === 'modal-buyee') { document.getElementById('input-buyee').value = ''; document.getElementById('res-buyee').textContent = '$0,00 ARS'; }
+        }
+
+        // Cálculos de los cotizadores
+        const inputPoca = document.getElementById('input-poca');
+        const resPoca = document.getElementById('res-poca');
+        inputPoca.addEventListener('input', () => {
+            const v = parseFloat(inputPoca.value);
+            if (!isNaN(v) && v >= 0) {
+                resPoca.textContent = '$' + (v * 1500).toLocaleString('es-AR', { minimumFractionDigits: 2 }) + ' ARS';
+            } else { resPoca.textContent = '$0,00 ARS'; }
+        });
+
+        const inputBuyee = document.getElementById('input-buyee');
+        const resBuyee = document.getElementById('res-buyee');
+        inputBuyee.addEventListener('input', () => {
+            const v = parseFloat(inputBuyee.value);
+            if (!isNaN(v) && v >= 0) {
+                resBuyee.textContent = '$' + ((v + 2.20) * 1550).toLocaleString('es-AR', { minimumFractionDigits: 2 }) + ' ARS';
+            } else { resBuyee.textContent = '$0,00 ARS'; }
+        });
+
+        // Función para copiar el resultado al portapapeles
+        function copiarTexto(idElemento) {
+            const texto = document.getElementById(idElemento).textContent;
+            // Quitamos el signo $ y las letras ARS si solo quieres el número, o copiamos todo:
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Resultado copiado con éxito! 💕: ' + texto);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+        }
+    </style>
+</body>
+</html>
