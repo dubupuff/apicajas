@@ -32,16 +32,18 @@
             padding: 40px 30px;
             border-radius: 32px;
             box-shadow: 0 12px 35px rgba(255, 117, 143, 0.2);
-            border: 5px dotted #FFB6C1; /* Borde cambiado a puntos redondos */
+            border: 5px dotted #FFB6C1; /* Borde de puntos redondos solicitado */
             text-align: center;
             position: relative;
         }
 
-        /* Imagen de Jigglypuff */
+        /* Imagen de Jigglypuff Pixel Art con animación de flotación */
         .jiggly-avatar {
-            width: 80px;
+            width: 75px;
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            image-rendering: pixelated; /* Mantiene los píxeles nítidos */
+            display: inline-block;
             animation: floatEffect 3s ease-in-out infinite;
         }
 
@@ -68,11 +70,11 @@
             justify-content: center;
             gap: 8px;
             margin-bottom: 35px;
-            flex-wrap: wrap; /* Permite que se acomode en celulares */
+            flex-wrap: wrap; /* Soporte para celulares */
         }
 
         .tab-button {
-            padding: 12px 16px;
+            padding: 12px 14px;
             font-size: 13px;
             font-weight: 700;
             border-radius: 16px;
@@ -120,7 +122,7 @@
 
         .btn-link {
             background: none;
-            color: #FF5C8A; /* Links en rosa fuerte */
+            color: #FF5C8A;
             border: none;
             font-size: 18px;
             font-weight: 700;
@@ -203,4 +205,87 @@
             line-height: 1.6;
             text-align: left;
             max-width: 420px;
-            margin: 15px
+            margin: 15px auto 0 auto;
+            background-color: #FFF9FA;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px dashed #FFE4E1;
+        }
+
+        /* Contenedor para la sección de enlaces externos */
+        .external-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 380px;
+            margin: 20px auto 0 auto;
+        }
+
+        .btn-external {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #FF5C8A;
+            background-color: #FFF5F6;
+            border: 2px solid #FFE4E1;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.15);
+        }
+
+        .btn-external:hover {
+            background-color: #FFB6C1;
+            color: #FFFFFF;
+            border-color: #FFA4B2;
+            transform: translateY(-2px);
+        }
+
+        /* Eliminar flechas de los inputs */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/anim/normal/jigglypuff.gif" alt="Jigglypuff Pixel Art" class="jiggly-avatar">
+
+        <h1 class="main-title">GO'S DUBUPUFF</h1>
+
+        <div class="nav-tabs">
+            <button class="tab-button active" id="tab-inicio" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Inicio</button>
+            <button class="tab-button" id="tab-buyee" onclick="cambiarPagina('page-buyee', 'tab-buyee')">Caja Buyee</button>
+            <button class="tab-button" id="tab-poca" onclick="cambiarPagina('page-poca', 'tab-poca')">Pocamarket</button>
+            <button class="tab-button" id="tab-links" onclick="cambiarPagina('page-links', 'tab-links')">Links útiles</button>
+        </div>
+
+        <div class="page-content active" id="page-inicio">
+            <div class="menu-grid">
+                <button class="btn-link" onclick="cambiarPagina('page-info-imp', 'tab-inicio')">info general !!</button>
+                <button class="btn-link" onclick="cambiarPagina('page-reglas', 'tab-inicio')">reglas !!</button>
+            </div>
+        </div>
+
+        <div class="page-content" id="page-buyee">
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">COTIZADOR BUYEE</h2>
+            <div class="subtitulo">dólar 1550 + 3.50 usd fee</div>
+
+            <div class="input-group">
+                <label>ingresar el monto con punto. ejemplo: 2.50</label>
+                <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-buyee">$0,00 ARS</div>
+            <div class="mensaje-final">una vez cotizado, mandame por dm el link así compro &lt;3</div>
+        </div>
+
+        <div class="page-content" id="page-poca">
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-
