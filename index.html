@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEGURI CASILLA</title>
+    <title>GO'S DUBUPUFF</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos Globales */
@@ -15,9 +15,8 @@
         }
 
         body {
-            background-color: #E2F5FC; /* Fondo celeste claro con lunares */
-            background-image: radial-gradient(#ffffff 20%, transparent 20%);
-            background-size: 30px 30px;
+            background-color: #FFE5DF; /* Fondo rosa claro original con estrellitas */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M15 5l1.2 2.5 2.8.4-2 2 1.3 2.6-2.3-1.5-2.3 1.5 1.3-2.6-2-2 2.8-.4L15 5zm30 30l.8 1.7 1.9.3-1.4 1.3.9 1.8-1.6-1-1.6 1 .9-1.8-1.4-1.3 1.9-.3.8-1.7zm5-20l.5 1 .9.2-.7.7.4 1-.8-.5-.8.5.4-1-.7-.7.9-.2.5-1z" fill="%23FFFFFF" fill-opacity="0.6"/></svg>');
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,13 +31,13 @@
             width: 100%;
             padding: 40px 30px;
             border-radius: 32px;
-            box-shadow: 0 12px 35px rgba(160, 210, 230, 0.4);
+            box-shadow: 0 12px 35px rgba(255, 182, 193, 0.35);
             border: 4px dashed #FFCCD5; /* Borde punteado tierno */
             text-align: center;
             position: relative;
         }
 
-        /* Título Principal con estrellitas virtuales */
+        /* Título Principal con estrellitas */
         h1.main-title {
             font-size: 32px;
             color: #FF758F;
@@ -49,7 +48,7 @@
         h1.main-title::before { content: "✨ "; }
         h1.main-title::after { content: " ✨"; }
 
-        /* Barra de Navegación Superior (Estilo de la imagen) */
+        /* Barra de Navegación Superior */
         .nav-tabs {
             display: flex;
             justify-content: center;
@@ -58,8 +57,8 @@
         }
 
         .tab-button {
-            padding: 12px 24px;
-            font-size: 15px;
+            padding: 12px 20px;
+            font-size: 14px;
             font-weight: 700;
             border-radius: 16px;
             cursor: pointer;
@@ -68,10 +67,11 @@
             background-color: #FFF5F6;
             color: #FF758F;
             flex: 1;
-            max-width: 140px;
+            max-width: 145px;
+            white-space: nowrap;
         }
 
-        /* Color verde pastel para la pestaña activa (idéntico a la imagen) */
+        /* Color verde pastel para la pestaña activa */
         .tab-button.active {
             background-color: #B2E396;
             color: #4A7A32;
@@ -79,14 +79,14 @@
             box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
         }
 
-        /* Secciones de Contenido (Páginas) */
+        /* Secciones de Contenido */
         .page-content {
-            display: none; /* Ocultas por defecto */
+            display: none;
             animation: fadeIn 0.4s ease;
         }
 
         .page-content.active {
-            display: block; /* Solo se muestra la activa */
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -105,7 +105,7 @@
 
         .btn-link {
             background: none;
-            color: #5D9C42; /* Verde para los links de información */
+            color: #5D9C42; /* Verde para los links */
             border: none;
             font-size: 18px;
             font-weight: 700;
@@ -209,12 +209,12 @@
 <body>
 
     <div class="portal-container">
-        <h1 class="main-title">geguri casilla!</h1>
+        <h1 class="main-title">GO'S DUBUPUFF</h1>
 
         <div class="nav-tabs">
             <button class="tab-button active" id="tab-inicio" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Inicio</button>
-            <button class="tab-button" id="tab-casilla" onclick="cambiarPagina('page-buyee', 'tab-casilla')">Casilla KR</button>
-            <button class="tab-button" id="tab-buyee" onclick="cambiarPagina('page-poca', 'tab-buyee')">Buyee JP</button>
+            <button class="tab-button" id="tab-buyee" onclick="cambiarPagina('page-buyee', 'tab-buyee')">Caja Buyee</button>
+            <button class="tab-button" id="tab-poca" onclick="cambiarPagina('page-poca', 'tab-poca')">Pocamarket</button>
         </div>
 
         <div class="page-content active" id="page-inicio">
@@ -272,21 +272,16 @@
     </div>
 
     <script>
-        // Función principal para cambiar de "página" interna
         function cambiarPagina(pageId, tabId) {
-            // Ocultar todas las páginas
             const paginas = document.querySelectorAll('.page-content');
             paginas.forEach(p => p.classList.remove('active'));
 
-            // Desmarcar todas las pestañas de navegación superiores
             const pestañas = document.querySelectorAll('.tab-button');
             pestañas.forEach(t => t.classList.remove('active'));
 
-            // Mostrar la página seleccionada y activar su respectiva pestaña principal
             document.getElementById(pageId).classList.add('active');
             document.getElementById(tabId).classList.add('active');
 
-            // Resetear inputs al cambiar de página para mayor comodidad
             if(pageId !== 'page-buyee') {
                 document.getElementById('input-buyee').value = '';
                 document.getElementById('res-buyee').textContent = '$0,00 ARS';
@@ -297,7 +292,6 @@
             }
         }
 
-        // Lógica en tiempo real Buyee ((Monto + 2.20) * 1550)
         const inputBuyee = document.getElementById('input-buyee');
         const resBuyee = document.getElementById('res-buyee');
         inputBuyee.addEventListener('input', function() {
@@ -308,7 +302,6 @@
             } else { resBuyee.textContent = '$0,00 ARS'; }
         });
 
-        // Lógica en tiempo real Pocamarket (Monto * 1500)
         const inputPoca = document.getElementById('input-poca');
         const resPoca = document.getElementById('res-poca');
         inputPoca.addEventListener('input', function() {
@@ -319,7 +312,7 @@
             } else { resPoca.textContent = '$0,00 ARS'; }
         });
 
-        // Código de protección opcional (anti clic derecho e inspección básica)
+        // Código de protección (anti clic derecho e inspección básica)
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') e.preventDefault();
