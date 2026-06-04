@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUBUPUFF PORTAL</title>
-    <!-- Fuente Montserrat de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos Globales */
@@ -57,7 +56,7 @@
             text-align: center;
         }
 
-        /* Estilo para el GIF de Jigglypuff */
+        /* Estilo para el GIF */
         .gif-jiggly {
             width: 100px;
             height: auto;
@@ -189,25 +188,9 @@
             font-size: 32px;
             font-weight: 700;
             color: #ff758f;
-            margin: 15px 0;
+            margin: 15px 0 25px 0; /* Aumentamos margen inferior al no estar el botón */
             min-height: 40px;
             text-align: center;
-        }
-
-        .btn-copiar {
-            background-color: #ff8fa3;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 13px;
-            font-weight: 700;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: all 0.2s;
-        }
-        .btn-copiar:hover {
-            background-color: #ff758f;
         }
 
         .mensaje-final {
@@ -240,12 +223,10 @@
 </head>
 <body>
 
-    <!-- PORTAL PRINCIPAL (HOME) -->
     <div class="portal-container">
         <h1>DUBUPUFF PORTAL</h1>
         <div class="subtitulo">¡Bienvenida! Elegí una opción de acá abajo 💕</div>
         
-        <!-- GIF EN INICIO (Entre texto y botones) -->
         <img src="jigglypuff.gif" alt="Jigglypuff" class="gif-jiggly">
 
         <div class="menu-grid">
@@ -256,14 +237,12 @@
         </div>
     </div>
 
-    <!-- POPUP 1: COTIZADOR POCAMARKET -->
     <div class="modal-overlay" id="modal-poca">
         <div class="modal-content">
             <button class="btn-cerrar" onclick="cerrarModal('modal-poca')">&times;</button>
             <h1>COTIZADOR POCAMARKET</h1>
             <div class="subtitulo">pocamarket dubupuff - dólar 1500</div>
             
-            <!-- GIF EN COTIZADOR POCAMARKET (Abajo de subtítulo) -->
             <img src="jigglypuff.gif" alt="Jigglypuff" class="gif-jiggly">
 
             <div class="input-group">
@@ -271,19 +250,16 @@
                 <input type="number" id="input-poca" placeholder="0.00" min="0" step="any">
             </div>
             <div class="total-box" id="res-poca">$0,00 ARS</div>
-            <button class="btn-copiar" id="btn-copiar-poca" onclick="copiarTexto('res-poca', 'btn-copiar-poca')">📋 Copiar Resultado</button>
             <div class="mensaje-final">una vez cotizado, mandame por dm el link de poca así compro &lt;3</div>
         </div>
     </div>
 
-    <!-- POPUP 2: COTIZADOR BUYEE -->
     <div class="modal-overlay" id="modal-buyee">
         <div class="modal-content">
             <button class="btn-cerrar" onclick="cerrarModal('modal-buyee')">&times;</button>
             <h1>COTIZADOR BUYEE</h1>
             <div class="subtitulo">dólar 1550 + 2.20 usd fee</div>
             
-            <!-- GIF EN COTIZADOR BUYEE (Abajo de subtítulo) -->
             <img src="jigglypuff.gif" alt="Jigglypuff" class="gif-jiggly">
 
             <div class="input-group">
@@ -291,19 +267,16 @@
                 <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
             </div>
             <div class="total-box" id="res-buyee">$0,00 ARS</div>
-            <button class="btn-copiar" id="btn-copiar-buyee" onclick="copiarTexto('res-buyee', 'btn-copiar-buyee')">📋 Copiar Resultado</button>
             <div class="mensaje-final">una vez cotizado, mandame por dm el link así compro &lt;3</div>
         </div>
     </div>
 
-    <!-- POPUP 3: CÓMO COMPRAR -->
     <div class="modal-overlay" id="modal-ayuda">
         <div class="modal-content">
             <button class="btn-cerrar" onclick="cerrarModal('modal-ayuda')">&times;</button>
             <h1>¿Cómo comprar?</h1>
             <div class="subtitulo">Guía rápida paso a paso</div>
             
-            <!-- GIF EN SECCIÓN AYUDA (Abajo de subtítulo) -->
             <img src="jigglypuff.gif" alt="Jigglypuff" class="gif-jiggly">
 
             <div class="info-texto">
@@ -315,14 +288,12 @@
         </div>
     </div>
 
-    <!-- POPUP 4: TÉRMINOS Y CONDICIONES -->
     <div class="modal-overlay" id="modal-terminos">
         <div class="modal-content">
             <button class="btn-cerrar" onclick="cerrarModal('modal-terminos')">&times;</button>
             <h1>Términos y Condiciones</h1>
             <div class="subtitulo">Información importante antes de encargar</div>
             
-            <!-- GIF EN SECCIÓN TÉRMINOS (Abajo de subtítulo) -->
             <img src="jigglypuff.gif" alt="Jigglypuff" class="gif-jiggly">
 
             <div class="info-texto">
@@ -372,15 +343,26 @@
             } else { resBuyee.textContent = '$0,00 ARS'; }
         });
 
-        function copiarTexto(idElemento, idBoton) {
-            const texto = document.getElementById(idElemento).textContent;
-            const boton = document.getElementById(idBoton);
-            navigator.clipboard.writeText(texto).then(() => {
-                const textoOriginal = boton.textContent;
-                boton.textContent = '✨ ¡Copiado! ✨';
-                setTimeout(() => { boton.textContent = textoOriginal; }, 2000);
-            });
-        }
+        // Bloquear el menú del clic derecho
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+// Bloquear atajos de teclado de desarrollo comunes
+document.addEventListener('keydown', function(e) {
+    // Bloquear F12
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+    // Bloquear Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) {
+        e.preventDefault();
+    }
+    // Bloquear Ctrl+U (Ver código fuente)
+    if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+    }
+});
     </script>
 </body>
 </html>
