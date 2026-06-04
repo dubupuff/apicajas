@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #FFE5DF; /* Fondo rosa solicitado */
+            background-color: #FFE5DF; /* Tu característico fondo rosa */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M15 5l1.2 2.5 2.8.4-2 2 1.3 2.6-2.3-1.5-2.3 1.5 1.3-2.6-2-2 2.8-.4L15 5zm30 30l.8 1.7 1.9.3-1.4 1.3.9 1.8-1.6-1-1.6 1 .9-1.8-1.4-1.3 1.9-.3.8-1.7zm5-20l.5 1 .9.2-.7.7.4 1-.8-.5-.8.5.4-1-.7-.7.9-.2.5-1z" fill="%23FFFFFF" fill-opacity="0.6"/></svg>');
             display: flex;
             justify-content: center;
@@ -24,7 +24,7 @@
             padding: 20px;
         }
 
-        /* Contenedor Principal Fijo (Estilo Tarjeta Carrd Asegurado) */
+        /* Contenedor Principal Fijo (Tu hermosa tarjeta blanca estilo Carrd) */
         .portal-container {
             background-color: #ffffff !important;
             max-width: 550px !important;
@@ -32,12 +32,12 @@
             padding: 40px 30px;
             border-radius: 32px;
             box-shadow: 0 12px 35px rgba(255, 117, 143, 0.2);
-            border: 5px dotted #FFB6C1; /* Borde de puntos redondos solicitado */
+            border: 5px dotted #FFB6C1; /* Tu borde de puntos redondos solicitado */
             text-align: center;
-            display: block !important; /* Evita que desaparezca */
+            display: block !important; /* Evita que la tarjeta desaparezca por completo */
         }
 
-        /* Imagen de Jigglypuff */
+        /* Tu avatar animado de Jigglypuff */
         .jiggly-avatar {
             width: 75px;
             height: auto;
@@ -57,3 +57,86 @@
             font-size: 32px;
             color: #FF5C8A; /* Rosa fuerte vibrante */
             font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+        h1.main-title::before { content: "✨ "; }
+        h1.main-title::after { content: " ✨"; }
+
+        /* Barra de Navegación Superior */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 35px;
+            flex-wrap: wrap; /* Excelente adaptación para celulares */
+        }
+
+        .tab-button {
+            padding: 12px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 2px solid #FFE4E1;
+            background-color: #FFF5F6;
+            color: #FF758F;
+            flex: 1;
+            min-width: 105px;
+            white-space: nowrap;
+        }
+
+        /* Pestaña activa en tus tonos rosa de contraste */
+        .tab-button.active {
+            background-color: #FFB6C1 !important;
+            color: #FFFFFF !important;
+            border-color: #FFA4B2 !important;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.08);
+        }
+
+        /* Secciones de Contenido */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block !important;
+        }
+
+        /* Menú de Botones Internos de Inicio */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .btn-link {
+            background: none;
+            color: #FF5C8A;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+        .btn-link:hover {
+            color: #D63E6B;
+        }
+
+        /* Estilos de los Cotizadores e Inputs */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtitulo {
+            font-size: 14px;
