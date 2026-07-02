@@ -435,14 +435,16 @@
         var volibear = document.getElementById('volibear');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
-                 try {
+                if (!this.value.isNan()){
                     var v = parseFloat(this.value);
                     if (!isNaN(v) && v >= 0) {
                         var total = (v + 3.50) * 1600;
                         resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
-                        } else { resBuyee.textContent = '$0,00 ARS'; }
-                } catch {
-                    volibear.textContent = "hola";
+                    } else { resBuyee.textContent = '$0,00 ARS'; }
+                } else {
+                    if (this.value == 'volibear'){
+                        volibear.textContent = "hola";
+                    };
                 }
                 /*var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
