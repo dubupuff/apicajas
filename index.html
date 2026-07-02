@@ -437,7 +437,7 @@
         var volibear = document.getElementById('volibear');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
-                if (!isNan(this.value)){
+                if (!isNaN(this.value)){
                     var v = parseFloat(this.value);
                     if (!isNaN(v) && v >= 0) {
                         var total = (v + 3.50) * 1600;
