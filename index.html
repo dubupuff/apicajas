@@ -419,12 +419,14 @@
             if(pageId !== 'page-buyee') {
                 var inB = document.getElementById('input-buyee');
                 var resB = document.getElementById('res-buyee');
+                document.getElementById('volibear').value = '';
                 if(inB) inB.value = '';
                 if(resB) resB.textContent = '$0,00 ARS';
             }
             if(pageId !== 'page-poca') {
                 var inP = document.getElementById('input-poca');
                 var resP = document.getElementById('res-poca');
+                document.getElementById('volibear').value = '';
                 if(inP) inP.value = '';
                 if(resP) resP.textContent = '$0,00 ARS';
             }
@@ -435,14 +437,14 @@
         var volibear = document.getElementById('volibear');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
-                if (!this.value.isNan()){
+                if (!isNan(this.value)){
                     var v = parseFloat(this.value);
                     if (!isNaN(v) && v >= 0) {
                         var total = (v + 3.50) * 1600;
                         resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
                     } else { resBuyee.textContent = '$0,00 ARS'; }
                 } else {
-                    if (this.value == 'volibear'){
+                    if (this.value.match('volibear'){
                         volibear.textContent = "hola";
                     };
                 }
