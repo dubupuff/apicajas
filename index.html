@@ -303,12 +303,12 @@
 
         <div class="page-content" id="page-buyee">
             <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">COTIZADOR BUYEE</h2>
-            <div class="subtitulo">buyee - dólar 1602</div>
+            <div class="subtitulo">buyee - dólar 1600</div>
 
             <div class="input-group">
                 <label>ingresar el monto con punto. ejemplo: 2.50</label>
-                <input id="input-buyee">
-                <!--input type="number" id="input-buyee" placeholder="0.00" min="0" step="any"-->
+                <!--input id="input-buyee"-->
+                <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
             </div>
             <div class="total-box" id="res-buyee">$0,00 ARS</div>
             <div class="total-box" id="volibear"></div>
@@ -437,7 +437,7 @@
         var volibear = document.getElementById('volibear');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
-                if (!isNaN(this.value)){
+                /*if (!isNaN(this.value)){
                     var v = parseFloat(this.value);
                     if (!isNaN(v) && v >= 0) {
                         var total = (v + 3.50) * 1600;
@@ -447,12 +447,12 @@
                     if (this.value.match('volibear')){
                         volibear.textContent = "hola";
                     };
-                }
-                /*var v = parseFloat(this.value);
+                }*/
+                var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
                     var total = (v + 3.50) * 1600;
                     resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
-                } else { resBuyee.textContent = '$0,00 ARS'; }*/
+                } else { resBuyee.textContent = '$0,00 ARS'; }
             });
         }
 
@@ -468,13 +468,13 @@
             });
         }
 
-        // ================= ZONA DE OMEGAS =================
-        /*document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        // ================= ZONA DE OMEGAS - VOLIBEAR ESTUVO AQUI  =================
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') e.preventDefault();
             if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) e.preventDefault();
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) e.preventDefault();
-        });*/
+        });
     </script>
 </body>
 </html>
