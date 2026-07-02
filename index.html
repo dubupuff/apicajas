@@ -303,13 +303,15 @@
 
         <div class="page-content" id="page-buyee">
             <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">COTIZADOR BUYEE</h2>
-            <div class="subtitulo">buyee - dólar 1600</div>
+            <div class="subtitulo">buyee - dólar 1601</div>
 
             <div class="input-group">
                 <label>ingresar el monto con punto. ejemplo: 2.50</label>
-                <input type="text" id="input-buyee" placeholder="0.00" min="0" step="any">
+                <input id="input-buyee">
+                <!--input type="number" id="input-buyee" placeholder="0.00" min="0" step="any"-->
             </div>
             <div class="total-box" id="res-buyee">$0,00 ARS</div>
+            <div class="total-box" id="volibear"></div>
             <div class="mensaje-final">una vez cotizado, mandame por mensaje el link del post así compro &lt;3</div>
         </div>
 
@@ -430,16 +432,23 @@
 
         var inputBuyee = document.getElementById('input-buyee');
         var resBuyee = document.getElementById('res-buyee');
+        var volibear = document.getElementById('volibear');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
-                var v = parseFloat(this.value);
-                if (this.value.includes("volibear")){
-                    resBuyee.textContent = "hola";
+                 try {
+                    var v = parseFloat(this.value);
+                    if (!isNaN(v) && v >= 0) {
+                        var total = (v + 3.50) * 1600;
+                        resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
+                        } else { resBuyee.textContent = '$0,00 ARS'; }
+                } catch {
+                    volibear.textContent = "hola";
                 }
+                /*var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
                     var total = (v + 3.50) * 1600;
                     resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
-                } else { resBuyee.textContent = '$0,00 ARS'; }
+                } else { resBuyee.textContent = '$0,00 ARS'; }*/
             });
         }
 
@@ -455,7 +464,7 @@
             });
         }
 
-        // ================= SCRIPT ANTI-INSPECCIÓN SEGURO =================
+        // ================= ZONA DE OMEGAS =================
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') e.preventDefault();
