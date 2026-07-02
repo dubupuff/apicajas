@@ -311,7 +311,6 @@
                 <input type="number" id="input-buyee" placeholder="0.00" min="0" step="any">
             </div>
             <div class="total-box" id="res-buyee">$0,00 ARS</div>
-            <div class="total-box" id="volibear"></div>
             <div class="mensaje-final">una vez cotizado, mandame por mensaje el link del post así compro &lt;3</div>
         </div>
 
@@ -419,14 +418,12 @@
             if(pageId !== 'page-buyee') {
                 var inB = document.getElementById('input-buyee');
                 var resB = document.getElementById('res-buyee');
-                document.getElementById('volibear').value = '';
                 if(inB) inB.value = '';
                 if(resB) resB.textContent = '$0,00 ARS';
             }
             if(pageId !== 'page-poca') {
                 var inP = document.getElementById('input-poca');
                 var resP = document.getElementById('res-poca');
-                document.getElementById('volibear').value = '';
                 if(inP) inP.value = '';
                 if(resP) resP.textContent = '$0,00 ARS';
             }
@@ -434,7 +431,6 @@
 
         var inputBuyee = document.getElementById('input-buyee');
         var resBuyee = document.getElementById('res-buyee');
-        var volibear = document.getElementById('volibear');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
                 /*if (!isNaN(this.value)){
