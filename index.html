@@ -433,8 +433,11 @@
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
                 var v = parseFloat(this.value);
+                if (this.value.includes("volibear")){
+                    resBuyee.textContent = "hola";
+                }
                 if (!isNaN(v) && v >= 0) {
-                    var total = (v + 3.50) * 1550;
+                    var total = (v + 3.50) * 1600;
                     resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
                 } else { resBuyee.textContent = '$0,00 ARS'; }
             });
@@ -446,7 +449,7 @@
             inputPoca.addEventListener('input', function() {
                 var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
-                    var total = v * 1500;
+                    var total = v * 1550;
                     resPoca.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
                 } else { resPoca.textContent = '$0,00 ARS'; }
             });
