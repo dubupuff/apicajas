@@ -457,7 +457,7 @@
             inputPoca.addEventListener('input', function() {
                 var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
-                    var total = v * 1550;
+                    var total = (v + 0.3) * 1550;
                     resPoca.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
                 } else { resPoca.textContent = '$0,00 ARS'; }
             });
