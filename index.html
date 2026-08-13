@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* Imagen de Jigglypuff apuntando a tu propio archivo de GitHub */
+        /* Imagen de Jigglypuff */
         .jiggly-avatar {
             width: 75px;
             height: auto;
@@ -58,13 +58,12 @@
             font-size: 32px;
             color: #FF5C8A; /* Rosa fuerte vibrante */
             font-weight: 700;
-            margin-bottom: 5px; /* Reducido para acercar los subtítulos */
+            margin-bottom: 5px;
             letter-spacing: -0.5px;
         }
         h1.main-title::before { content: "💗 "; }
         h1.main-title::after { content: " 💗"; }
 
-        /* Estilos para los nuevos subtítulos debajo del título */
         .subtitle-author {
             font-size: 16px;
             color: #FF758F;
@@ -77,10 +76,9 @@
             color: #7A6F71;
             font-weight: 500;
             letter-spacing: 0.5px;
-            margin-bottom: 25px; /* Espacio antes de las pestañas */
+            margin-bottom: 25px;
         }
 
-        /* Hace que las letras en formato <b> sean del mismo color que el título */
         b, strong {
             color: #FF5C8A;
             font-weight: 700;
@@ -90,14 +88,14 @@
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             margin-bottom: 35px;
-            flex-wrap: wrap; /* Soporte para celulares */
+            flex-wrap: wrap;
         }
 
        .tab-button {
-            padding: 12px 8px; /* Reducimos el espacio interno lateral para ganar lugar */
-            font-size: 12px;   /* Letra un cachito más chica para que entre "cotizador" */
+            padding: 10px 6px;
+            font-size: 11px;
             font-weight: 700;
             border-radius: 16px;
             cursor: pointer;
@@ -106,12 +104,11 @@
             background-color: #FFF5F6;
             color: #FF758F;
             flex: 1;
-            min-width: 90px;   /* Reducido para que entren mejor los 4 botones en línea */
-            white-space: normal; /* Permite que si no entra, el texto baje en dos renglones de forma prolija */
+            min-width: 80px;
+            white-space: normal;
             word-wrap: break-word;
         }
 
-        /* Pestaña activa en tonos rosa de contraste */
         .tab-button.active {
             background-color: #FFB6C1;
             color: #FFFFFF;
@@ -235,7 +232,6 @@
             border: 1px dashed #FFE4E1;
         }
 
-        /* Contenedor para la sección de enlaces externos */
         .external-links-container {
             display: flex;
             flex-direction: column;
@@ -283,12 +279,13 @@
         <h1 class="main-title">GO'S DUBUPUFF</h1>
         
         <div class="subtitle-author">by api</div>
-        <div class="subtitle-platforms">buyee - kpopmart - pocamarket</div>
+        <div class="subtitle-platforms">buyee - kpopmart - pocamarket - bunjang</div>
 
         <div class="nav-tabs">
             <button class="tab-button active" id="tab-inicio" onclick="cambiarPagina('page-inicio', 'tab-inicio')">inicio</button>
             <button class="tab-button" id="tab-buyee" onclick="cambiarPagina('page-buyee', 'tab-buyee')">cotizador buyee</button>
             <button class="tab-button" id="tab-poca" onclick="cambiarPagina('page-poca', 'tab-poca')">cotizador poca</button>
+            <button class="tab-button" id="tab-bunjang" onclick="cambiarPagina('page-bunjang', 'tab-bunjang')">cotizador bunjang</button>
             <button class="tab-button" id="tab-links" onclick="cambiarPagina('page-links', 'tab-links')">links</button>
         </div>
 
@@ -323,6 +320,18 @@
             </div>
             <div class="total-box" id="res-poca">$0,00 ARS</div>
             <div class="mensaje-final">una vez cotizado, mandame por mensaje el/los link/s de poca así compro &lt;3</div>
+        </div>
+
+        <div class="page-content" id="page-bunjang">
+            <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">COTIZADOR BUNJANG</h2>
+            <div class="subtitulo">bunjang - dólar 1600</div>
+
+            <div class="input-group">
+                <label>ingresar monto en wones (krw). ejemplo: 15000</label>
+                <input type="number" id="input-bunjang" placeholder="0" min="0" step="any">
+            </div>
+            <div class="total-box" id="res-bunjang">$0,00 ARS</div>
+            <div class="mensaje-final">una vez cotizado, mandame por mensaje el link de bunjang así compro &lt;3</div>
         </div>
 
         <div class="page-content" id="page-links">
@@ -370,7 +379,7 @@
             <button class="tab-button" style="margin-top: 25px; max-width: 100%;" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Volver al Inicio</button>
         </div>
 
-           <div class="page-content" id="page-reglas-poca">
+        <div class="page-content" id="page-reglas-poca">
             <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">información y reglas pocamarket</h2>
             <div class="info-texto">
                 • me manejo con un cotizador que se actualiza según el dolar del dìa. por favor, chequear que el precio o se haya modificado antes de hablarme.<br><br>
@@ -382,13 +391,13 @@
             <button class="tab-button" style="margin-top: 25px; max-width: 100%;" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Volver al Inicio</button>
         </div>
 
-          <div class="page-content" id="page-reglas-kr">
+        <div class="page-content" id="page-reglas-kr">
             <h2 style="font-size: 20px; color: #FF5C8A; font-weight: 700; margin-bottom: 5px;">información y reglas casilla kr</h2>
             <div class="info-texto">
                 • actualmente solo acepto links del sitio web <a href="https://m.bunjang.co.kr/" target="_blank">bunjang</a>.<br><br>
                 • es posible pedir solo unos items del lote en vez de la totalidad, por favor consultar conmigo esta posibilidad. <br><br>
                 • es posible que pasen varios días sin tener información del pedido debido a una actualización reciente. tengan <b>paciencia</b>.<br><br>
-                • actualmente <b>no</b> cuento con cotizador para bunjang, por favor consultar al privado para cotizar! <br><br>
+                • podés utilizar el <b>cotizador bunjang</b> de la pestaña superior para calcular el valor de tus ítems en pesos.<br><br>
                 • existen 3 (tres) instancias de pago: la totalidad de la publicación con sus respectivos fees, envío e impuestos. en caso de <b>no</b> abonar una de estas, se perderá el item. <br><br>
             </div>
             <button class="tab-button" style="margin-top: 25px; max-width: 100%;" onclick="cambiarPagina('page-inicio', 'tab-inicio')">Volver al Inicio</button>
@@ -426,23 +435,18 @@
                 if(inP) inP.value = '';
                 if(resP) resP.textContent = '$0,00 ARS';
             }
+            if(pageId !== 'page-bunjang') {
+                var inBun = document.getElementById('input-bunjang');
+                var resBun = document.getElementById('res-bunjang');
+                if(inBun) inBun.value = '';
+                if(resBun) resBun.textContent = '$0,00 ARS';
+            }
         }
 
         var inputBuyee = document.getElementById('input-buyee');
         var resBuyee = document.getElementById('res-buyee');
         if(inputBuyee && resBuyee) {
             inputBuyee.addEventListener('input', function() {
-                /*if (!isNaN(this.value)){
-                    var v = parseFloat(this.value);
-                    if (!isNaN(v) && v >= 0) {
-                        var total = (v + 3.50) * 1600;
-                        resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
-                    } else { resBuyee.textContent = '$0,00 ARS'; }
-                } else {
-                    if (this.value.match('volibear')){
-                        volibear.textContent = "hola";
-                    };
-                }*/
                 var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
                     var total = (v + 3.50) * 1600;
@@ -463,7 +467,33 @@
             });
         }
 
-        // ================= ZONA DE OMEGAS - VOLIBEAR ESTUVO AQUI  =================
+        /* Lógica del Cotizador Bunjang */
+        var inputBunjang = document.getElementById('input-bunjang');
+        var resBunjang = document.getElementById('res-bunjang');
+        if(inputBunjang && resBunjang) {
+            inputBunjang.addEventListener('input', function() {
+                var wones = parseFloat(this.value);
+                if (!isNaN(wones) && wones >= 0) {
+                    // 1. Convertir wones a pesos (1000 KRW = 1400 ARS)
+                    var subtotalPesos = (wones / 1000) * 1400;
+                    
+                    // 2. Convertir el subtotal a dólares (1 USD = 1600 ARS)
+                    var itemUSD = subtotalPesos / 1600;
+                    
+                    // 3. Aplicar comisión PayPal: 4.4% sobre (ítem + envío 2 USD) + 0.30 USD fijo
+                    var totalUSD = (itemUSD + 2 + 0.30) / (1 - 0.044);
+                    
+                    // 4. Convertir total final de USD a pesos (Dólar 1600)
+                    var totalARS = totalUSD * 1600;
+                    
+                    resBunjang.textContent = '$' + totalARS.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
+                } else { 
+                    resBunjang.textContent = '$0,00 ARS'; 
+                }
+            });
+        }
+
+        // ================= ZONA DE OMEGAS - VOLIBEAR ESTUVO AQUI =================
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') e.preventDefault();
