@@ -449,7 +449,7 @@
             inputBuyee.addEventListener('input', function() {
                 var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
-                    var total = (v + 3.50) * 1600;
+                    var total = (v + 4) * 1600;
                     resBuyee.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
                 } else { resBuyee.textContent = '$0,00 ARS'; }
             });
@@ -461,7 +461,7 @@
             inputPoca.addEventListener('input', function() {
                 var v = parseFloat(this.value);
                 if (!isNaN(v) && v >= 0) {
-                    var total = (v + 0.3) * 1550;
+                    var total = (v + 0.3) * 1600;
                     resPoca.textContent = '$' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ARS';
                 } else { resPoca.textContent = '$0,00 ARS'; }
             });
@@ -481,7 +481,7 @@
                     var itemUSD = subtotalPesos / 1600;
                     
                     // 3. Aplicar comisión PayPal: 4.4% sobre (ítem + envío 2 USD) + 0.30 USD fijo
-                    var totalUSD = (itemUSD + 4 + 0.30) / (1 - 0.044);
+                    var totalUSD = (itemUSD + 5 + 0.30) / (1 - 0.044);
                     
                     // 4. Convertir total final de USD a pesos (Dólar 1600)
                     var totalARS = totalUSD * 1600;
